@@ -20,6 +20,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    android {
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+    }
 }
 
 dependencies {
@@ -27,9 +34,10 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
-    //Retrofit dependencies
-    implementation'com.squareup.retrofit2:retrofit:2.6.2'
-    implementation'com.squareup.retrofit2:converter-gson:2.0.1'
+
+    // fragment navigation
+    implementation 'androidx.navigation:navigation-fragment:2.3.0'
+    implementation 'androidx.navigation:navigation-ui:2.3.0'
 
     //Gson (JSON parser) dependency
     implementation 'com.google.code.gson:gson:2.8.6'
