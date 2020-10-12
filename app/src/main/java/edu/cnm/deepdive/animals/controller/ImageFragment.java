@@ -31,6 +31,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
 public class ImageFragment extends Fragment {
 
   private WebView contentView;
@@ -48,7 +49,7 @@ public class ImageFragment extends Fragment {
   public void onViewCreated(@NonNull View view,
       @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    animalViewModel = new ViewModelProvider(getActivity())
+    animalViewModel = new ViewModelProvider(Objects.requireNonNull(getActivity()))
         .get(AnimalViewModel.class);
     animalViewModel.getAnimals().observe(getViewLifecycleOwner(), new Observer<List<Animal>>() {
       @Override
@@ -56,7 +57,6 @@ public class ImageFragment extends Fragment {
         contentView.loadUrl(animals.get(22).getImageUrl());
       }
     });
-
   }
 
   private void setupWebView(View root) {
@@ -74,56 +74,6 @@ public class ImageFragment extends Fragment {
     settings.setDisplayZoomControls(false);
     settings.setUseWideViewPort(true);
     settings.setLoadWithOverviewMode(true);
-    new RetrieverTask().execute();
   }
 
-  private class RetrieverTask extends AsyncTask<Void, Void, List<Animal>> {
-
-    private AnimalService animalService;
-
-    @Override
-    protected void onPreExecute() {
-      super.onPreExecute();
-      Gson gson = new GsonBuilder()
-          .create();
-      Retrofit retrofit = new Retrofit.Builder()
-          .baseUrl(BuildConfig.BASE_URL)
-          .addConverterFactory(GsonConverterFactory.create(gson))
-          .build();
-      animalService = retrofit.create(AnimalService.class);
-    }
-
-    @Override
-    protected List<Animal> doInBackground(Void... voids) {
-      try {
-        Response<ApiKey> keyResponse = animalService.getApiKey().execute();
-        ApiKey key = keyResponse.body();
-        assert key != null;
-        final String clientKey = key.getKey();
-
-        Response<List<Animal>> listResponse = animalService.getAnimals(clientKey).execute();
-        List<Animal> animalList = listResponse.body();
-        assert animalList != null;
-        return animalList;
-      } catch (
-          IOException e) {
-        Log.e("AnimalService", e.getMessage(), e);
-        cancel(true);
-      }
-      return null;
-    }
-
-    @Override
-    protected void onPostExecute(List<Animal> animalList) {
-
-
-      Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
-        @Override
-        public void run() {
-
-
-        }
-      });
-    }
-  }
 }
