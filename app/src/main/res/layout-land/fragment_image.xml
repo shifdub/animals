@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  tools:context=".controller.ImageFragment">
+
+  <androidx.appcompat.widget.Toolbar
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?attr/actionBarSize"
+    app:titleTextColor="@android:color/white"
+    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+    android:background="@android:color/holo_purple"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <Spinner
+      android:id="@+id/animals_spinner"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="@android:color/holo_purple"
+      android:layout_gravity="end|center_vertical"
+      />
+
+  </androidx.appcompat.widget.Toolbar>
+
+
+  <ImageView
+    android:id="@+id/image_view"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:adjustViewBounds="true"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/toolbar"
+    android:contentDescription="@string/spinner">
+  </ImageView>
+
+  <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    android:text="@string/landscape_mode"
+    android:textColor="@color/white"
+    />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

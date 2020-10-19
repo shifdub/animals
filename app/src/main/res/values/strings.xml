@@ -2,4 +2,9 @@
   <string name="app_name">Animals</string>
   <!-- TODO: Remove or change this placeholder text -->
   <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="spinner">Spinner</string>
+  <string name="portraitmode">PORTRAITMODE</string>
+  <string name="portrait_mode">portaitmode</string>
+  <string name="landscape_mode">LANDSCAPE MODE</string>
+  <string name="portait_mode">PORTAIT MODE</string>
 </resources>
